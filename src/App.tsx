@@ -1,23 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { getGPUTier } from 'detect-gpu';
 
 function App() {
+  const [result, setResult] = useState<any>(null);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <pre>{JSON.stringify(result, null, 2)}</pre>
+        <button
+          onClick={() => {
+            getGPUTier()
+              .then((res) => {
+                setResult(res);
+              })
+              .catch((err) => {
+                console.error(err);
+                setResult({ error: err.message });
+              });
+          }}
         >
-          Learn React
-        </a>
+          Run test
+        </button>
       </header>
     </div>
   );
