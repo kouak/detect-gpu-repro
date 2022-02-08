@@ -2,6 +2,8 @@
 
 detect-gpu bug reproduction
 
+https://github.com/pmndrs/detect-gpu
+
 ## Steps to reproduce
 
 - Create a production build: `yarn install && yarn build`
